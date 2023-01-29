@@ -1,0 +1,30 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+  }
+  
+  h1 {
+    font-size: 2em;
+    margin-bottom: 0.5em;
+  }
+  
+  form {
+    display: inline-block;
+    text-align: left;
+  }
+  
+  label {
+    font-size: 1.2em;
+    margin-right: 0.5em;
+  }
+  
+  input {
+    font-size: 1.2em;
+    padding: 0.2em;
+  }
+  
+  #results {
+    display: inline-block;
+    margin-top: 1em;
+    text-align: left;
+  }

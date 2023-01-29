@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Recipizer</title>
+    <link rel="stylesheet" type="text/css" href="recipizer.css">
+</head>
+
+<body>
+    <h1>Recipizer</h1>
+    <!-- <form>
+        <label for="searchbar">Search for a recipe:</label>
+        <input type="text" id="searchbar" name="searchbar" list="suggestions">
+        <datalist id="suggestions">
+            <option value="chocolate cake">
+            <option value="pizza">
+            <option value="lasagna">
+            <option value="sushi">
+            <option value="stir fry">
+        </datalist>
+    </form> -->
+
+    <form id="form">
+        <input type="text" id="input1" name="input1">
+        <button type="submit">Add</button>
+      </form>
+      <table id="table">
+        <tr>
+            <th>Input 1</th>
+        </tr>
+      </table>
+
+    <div id="results"></div>
+    <form>
+        <input type="submit" value="Get My Recipe!" name="ING" placeholder="Ingredients">
+    </form>
+</body>
+
+</html>
+
+<script>
+    // Get the form and table elements
+var form = document.getElementById("form");
+var table = document.getElementById("table");
+
+// Add an event listener to the form to listen for a submission event
+form.addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    // Get the input values from the form
+    var input1 = document.getElementById("input1").value;
+
+    // Create a new table row element
+    var newRow = document.createElement("tr");
+
+    // Create table data elements for each input value
+    var td1 = document.createElement("td");
+    td1.innerHTML = input1;
+
+    // Append the table data elements to the new table row
+    newRow.appendChild(td1);
+
+    // Append the new table row to the table
+    table.appendChild(newRow);
+});
+</script>
