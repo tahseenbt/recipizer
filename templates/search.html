@@ -1,12 +1,62 @@
 <!doctype html>
 <html>
 <head>
-    <title>Search Page</title>
+    <title>Recipizer</title>
+    <style>
+
+    #SB {
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: none;
+  box-shadow: 0 0 5px gray;
+  width: 50%;
+  margin: 20px auto;
+  display: block;
+}
+
+#SB:focus {
+  outline: none;
+  box-shadow: 0 0 10px blue;
+}
+#but {
+  padding: 10px 20px;
+  background-color: white;
+  color: white;
+  border-radius: 5px;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+#but:hover {
+  background-color: darkgrey;
+}
+img {
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto;
+    display: block;
+    width: 35%; 
+    height: 35%;
+  }
+  
+    </style>
 </head>
-<body>
+
+<body style="background-color: #e6b17f;">
+    <center>
+    <img src="https://i.ibb.co/B2k8RVR/final.png" alt="Recipizer logo is here">
+    <br>
+    <p style="font-family:Cambria, Cochin, Georgia; font-size: 60;">Welcome to Recipizer!
+        <br>
+        Input ingredients to discover delicious recipes.</p>
+
     <form method="POST" action="/results">
-        <input type="text" name="query" placeholder="Enter your search query">
-        <input type="submit" value="Search">
+        <input type="text" name="query" placeholder="Ingredients you are craving" id="SB">
+        <input type="submit" value="Get me recipes!" id="but" style="color: black;">
+    </center>
     </form>
 </body>
 </html>
