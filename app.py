@@ -10,7 +10,8 @@ def search():
 
 @app.route('/results', methods=['POST'])
 def results():
-    query = request.form['query'] #ING
+    data = request.form
+    query = ','.join([data[key] for key in data])
     dishes = get_dishes(query)
     return render_template('results.html', images=dishes)
 

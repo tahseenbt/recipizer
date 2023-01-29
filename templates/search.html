@@ -1,12 +1,86 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
 <head>
-    <title>Search Page</title>
+   <title>Recipizer</title>
+   <link rel="stylesheet" type="text/css" href="recipizer.css">
 </head>
 <body>
-    <form method="POST" action="/results">
-        <input type="text" name="query" placeholder="Enter your search query">
-        <input type="submit" value="Search">
-    </form>
+   <h1>Recipizer</h1>
+   <h5>Write up to 5 ingredients to have your delicious meal!</h5>
+
+   <form id="form1">
+       <input type="text" id="input1" name="input1">
+       <input type="submit" value="Add" name="ING">
+   </form>
+
+   <center>
+     <table id="table">
+       <tr>
+           <th></th>
+       </tr>
+     </table>
+   </center>
+
+   <button id="sendDataBtn">Get My Recipe!</button>
 </body>
+
 </html>
+   <script>
+    var form = document.getElementById("form1");
+    var table = document.getElementById("table");
+    // var ingredientsInput = document.getElementById("ingredients");
+    form.addEventListener("submit", function(event) {
+        event.preventDefault();
+        var input1 = document.getElementById("input1").value;
+        var newRow = document.createElement("tr");
+        var td1 = document.createElement("td");
+   
+     td1.innerHTML = input1;
+        newRow.appendChild(td1);
+        table.appendChild(newRow);
+    });
+    // document.getElementById("xx").addEventListener("submit", function(event) {
+    //     event.preventDefault();
+    //     var inputValues = [];
+    //     var tdElements = table.getElementsByTagName("td");
+    //     for (var i = 0; i < tdElements.length; i++) {
+    //         inputValues.push(tdElements[i].innerHTML);
+    //     }
+    //     ingredientsInput.value = inputValues;
+    //     this.submit();
+    // });
+    document.getElementById("sendDataBtn").addEventListener("click", function() {
+  var tableData = [];
+        var tdElements = table.getElementsByTagName("td");
+        for (var i = 0; i < tdElements.length; i++) {
+            tableData.push(tdElements[i].innerHTML);
+        }
+        // ingredientsInput.value = tableData;
+
+  post('/results', tableData);
+});
+
+function post(path, params, method='post') {
+
+// The rest of this code assumes you are not using a library.
+// It can be made less verbose if you use one.
+const form = document.createElement('form');
+form.method = method;
+form.action = path;
+
+for (const key in params) {
+  if (params.hasOwnProperty(key)) {
+    const hiddenField = document.createElement('input');
+    hiddenField.type = 'hidden';
+    hiddenField.name = key;
+    hiddenField.value = params[key];
+
+    form.appendChild(hiddenField);
+  }
+}
+
+document.body.appendChild(form);
+form.submit();
+}
+   </script>
+
