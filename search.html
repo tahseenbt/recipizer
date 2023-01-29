@@ -8,6 +8,7 @@
 
 <body>
     <h1>Recipizer</h1>
+    <h5>Write up to 5 ingredients to have your delicious meal!</h5>
     <!-- <form>
         <label for="searchbar">Search for a recipe:</label>
         <input type="text" id="searchbar" name="searchbar" list="suggestions">
@@ -20,30 +21,32 @@
         </datalist>
     </form> -->
 
-    <form id="form">
+    <form id="form1">
         <input type="text" id="input1" name="input1">
-        <button type="submit">Add</button>
+        <input type="submit" value="Add" name="ING">
       </form>
+
+      <center>
       <table id="table">
         <tr>
-            <th>Input 1</th>
+            <th></th>
         </tr>
       </table>
+    </center>
 
-    <div id="results"></div>
-    <form>
-        <input type="submit" value="Get My Recipe!" name="ING" placeholder="Ingredients">
+    <form id="xx">
+        <input type="submit" value="Get My Recipe!" name="xx" placeholder="Ingredients" onclick="submitForm()">
     </form>
+
 </body>
 
 </html>
 
 <script>
     // Get the form and table elements
-var form = document.getElementById("form");
+var form = document.getElementById("form1");
 var table = document.getElementById("table");
 
-// Add an event listener to the form to listen for a submission event
 form.addEventListener("submit", function(event) {
     event.preventDefault();
 
@@ -63,4 +66,21 @@ form.addEventListener("submit", function(event) {
     // Append the new table row to the table
     table.appendChild(newRow);
 });
-</script>
+
+        // Create an empty array to store the input values
+        var inputValues = [];
+        var tdElements = table.getElementsByTagName("td");
+        var formfinal = document.getElementById("xx")
+
+        // Iterate over the td elements and push the input values to the array
+        for (var i = 0; i < tdElements.length; i++) {
+            inputValues.push(tdElements[i].innerHTML);
+        }
+ 
+        // Set the input values as the value of the form
+        form.elements.xx.value = inputValues;
+        
+        // Submit the form
+        form.submit();
+ </script>
+ 
