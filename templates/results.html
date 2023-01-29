@@ -1,0 +1,44 @@
+<html>
+  <head>
+    <style>
+      .image-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .image-box {
+        width: 300px;
+        margin: 20px;
+        text-align: center;
+      }
+
+      .image-info {
+        font-size: 18px;
+        margin-top: 10px;
+        text-align: left;
+      }
+
+      .image-info span {
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="image-container">
+      {% for image in images %}
+      <div class="image-box">
+        <img src="{{ image.src }}" alt="image">
+        <div class="image-info">
+          <div>Dish name: <span>{{ image.name }}</span></div>
+          <div>Calories: <span>{{ image.calories }} cal</span></div>
+          <div>Proteins: <span>{{ image.proteins }} g</span></div>
+          <div>Carbs: <span>{{ image.carbs }} g</span></div>
+          <div>Fats: <span>{{ image.fats }} g</span></div>
+          <div>Ingredients: <span>{{ image.ingredients }}</span></div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </body>
+</html>

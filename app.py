@@ -11,10 +11,10 @@ def search():
 @app.route('/results', methods=['POST'])
 def results():
     query = request.form['query'] #ING
-    recipes = get_recipes(query)
-    # return render_template('results.html', query=query, results=results)
+    dishes = get_dishes(query)
+    return render_template('results.html', images=dishes)
 
-def get_recipes(query):
+def get_dishes(query):
     
     req = f'https://api.edamam.com/search?q={query}&app_id=204606e9&app_key=9b74f3ecd1ca6c12d86b294181061c80'
     x = requests.get(req)
@@ -26,13 +26,13 @@ def get_recipes(query):
     for i in range(len(dict_data["hits"])):
         if i < 3:
             dish = {
-                "name": dict_data["hits"][0]["recipe"]["label"],
-                "image": dict_data["hits"][0]["recipe"]["image"],
-                "calories": dict_data["hits"][0]["recipe"]["calories"],
-                "proteins": dict_data["hits"][0]["recipe"]["totalNutrients"]["PROCNT"],
-                "carbs": dict_data["hits"][0]["recipe"]["totalNutrients"]["CHOCDF"],
-                "fats": dict_data["hits"][0]["recipe"]["totalNutrients"]["FAT"],
-                "ingredients": dict_data["hits"][0]["recipe"]["ingredientLines"]
+                "name": dict_data["hits"][i]["recipe"]["label"],
+                "src": dict_data["hits"][i]["recipe"]["image"],
+                "calories": round(dict_data["hits"][i]["recipe"]["calories"]),
+                "proteins": round(dict_data["hits"][i]["recipe"]["totalNutrients"]["PROCNT"]["quantity"]),
+                "carbs": round(dict_data["hits"][i]["recipe"]["totalNutrients"]["CHOCDF"]["quantity"]),
+                "fats": round(dict_data["hits"][i]["recipe"]["totalNutrients"]["FAT"]["quantity"]),
+                "ingredients": ", ".join(dict_data["hits"][i]["recipe"]["ingredientLines"])
             }
             dishes.append(dish)
         else:
@@ -40,5 +40,7 @@ def get_recipes(query):
 
     return dishes
 
+
 if __name__ == '__main__':
     app.run(debug=False)
+
