@@ -17,7 +17,9 @@ def results():
 
 def get_dishes(query):
     
-    req = f'https://api.edamam.com/search?q={query}&app_id=204606e9&app_key=9b74f3ecd1ca6c12d86b294181061c80'
+    app_id = ""
+    app_key = ""
+    req = f'https://api.edamam.com/search?q={query}&app_id={app_id}&app_key={app_key}'
     x = requests.get(req)
     content = x.content
     dict_data = json.loads(content.decode('utf-8'))
